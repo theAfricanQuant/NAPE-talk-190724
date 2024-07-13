@@ -6,7 +6,7 @@ format:
   revealjs:
     footer: '© Ricky Macharm, MScFE'
     transition: fade
-    theme: default
+    theme: sky
 editor_options:
   chunk_output_type: inline
 jupyter: python3
