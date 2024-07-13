@@ -1,0 +1,401 @@
+---
+title: Understanding Machine Learning for Geosciences in the Age of AI
+author: Ricky Macharm
+date: '19 July, 2024'
+format:
+  revealjs:
+    footer: '© Ricky Macharm, MScFE'
+    transition: fade
+    theme: default
+editor_options:
+  chunk_output_type: inline
+jupyter: python3
+---
+
+### What is Machine Learning?
+
+Machine Learning (ML) is a field of artificial intelligence (AI) that enables computers to learn from data and improve their performance over time without being explicitly programmed.
+
+---
+
+### Key Definitions
+
+-   **Supervised Learning**: A type of machine learning where the model is trained on labeled data. The algorithm learns the mapping from input to output using examples.
+
+---
+
+### Key Definitions
+
+-   **Unsupervised Learning**: A type of machine learning where the model is trained on unlabeled data. The algorithm tries to find patterns and relationships in the data without specific output labels.
+
+---
+
+### Key Definitions
+
+-   **Reinforcement Learning**: A type of machine learning where an agent learns to make decisions by performing actions and receiving feedback in the form of rewards or penalties.
+
+---
+
+### Before Machine Learning: The Era of Statistics
+
+**Statistics** has long been the backbone of data analysis, providing methods for collecting, analyzing, interpreting, and presenting empirical data. Traditional statistics focuses on hypothesis testing, regression analysis, probability distributions, and inferential statistics to draw conclusions about populations based on sample data. These techniques have been foundational in scientific research, business analytics, and many other fields.
+
+---
+
+### Machine Learning: Pushing the Envelope
+
+:::{.incremental}
+
+- **Machine Learning** (ML) builds on the principles of statistics but takes data analysis to a new level by leveraging computational power and algorithms to automatically learn patterns from data.
+
+- Computers have popularized machine learning by providing the computational power and storage required to efficiently process large datasets and run complex algorithms.
+
+- NVIDIA has become a top-performing company by pioneering GPU technology, which significantly accelerates AI and machine learning tasks, revolutionizing various industries with unparalleled processing power.
+
+:::
+
+---
+
+### Linear Regression
+
+**Linear regression**, in the simplest terms, is a statistical method used to predict or explain a relationship between two variables:
+
+:::{.incremental}
+
+- One variable is considered the "predictor" or "independent" variable (often called X).
+
+- The other is the "outcome" or "dependent" variable (often called Y).
+
+:::
+
+---
+
+### Linear Regression
+
+**Linear regression** tries to find the best straight line that fits through the data points of these two variables. This line can then be used to:
+
+:::{.incremental}
+
+- Predict the value of Y for a given value of X.
+
+- Understand how much Y changes when X changes.
+
+:::
+
+---
+
+#### Let us look at an example with temperature measurements
+
+We are going to use the values of one domain to map the values found in another domain.
+
+::::{.incremental}
+
+- **Fahrenheit**: A temperature scale used mainly in the United States, where water freezes at 32°F and boils at 212°F.
+
+- **Celsius (Centigrade)**: A globally used temperature scale where water freezes at 0°C and boils at 100°C, commonly used in scientific and everyday temperature measurements.
+:::
+
+---
+
+
+```{python}
+
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Prepare the data
+celsius = np.array([0, 100]).reshape(-1, 1)  # Freezing and boiling points in Celsius
+fahrenheit = np.array([32, 212]).reshape(-1, 1)  # Corresponding points in Fahrenheit
+
+# Train the model
+model = LinearRegression()
+model.fit(celsius, fahrenheit)
+
+# Prepare the data for plotting
+celsius_values = np.linspace(-20, 120, 300)  # Generating a range of Celsius values
+fahrenheit_values = model.predict(celsius_values.reshape(-1, 1))  # Predicting corresponding Fahrenheit values
+
+# Adjust the plot to include markers for the boiling and freezing points
+plt.figure(figsize=(10, 6))
+plt.plot(celsius_values, fahrenheit_values, label='Linear Regression Line', color='blue')
+plt.scatter([0, 100], [32, 212], color='red', zorder=5, label='Data Points (Freezing & Boiling)')
+plt.axhline(y=32, color='gray', linestyle='--', label='Freezing Point Intercept (32°F)')  # Horizontal line at freezing point
+plt.axvline(x=0, color='gray', linestyle='--', label='Freezing Point Intercept (0°C)')  # Vertical line at freezing point
+plt.axhline(y=212, color='gray', linestyle='--', label='Boiling Point Intercept (212°F)')  # Horizontal line at boiling point
+plt.axvline(x=100, color='gray', linestyle='--', label='Boiling Point Intercept (100°C)')  # Vertical line at boiling point
+plt.text(0, 32, 'Freezing Point\n(0°C, 32°F)', fontsize=12, verticalalignment='bottom', horizontalalignment='right')
+plt.text(100, 212, 'Boiling Point\n(100°C, 212°F)', fontsize=12, verticalalignment='bottom', horizontalalignment='right')
+plt.xlim(-20, 120)
+plt.ylim(0, 250)
+plt.xlabel('Degrees Celsius')
+plt.ylabel('Degrees Fahrenheit')
+plt.title('Celsius to Fahrenheit Conversion')
+
+plt.grid(True)
+plt.show()
+```
+---
+
+::: {.callout-tip title="Linear Relationship"}
+We start with the general equation for a **linear relationship**:
+
+$$ y = mX + c $$
+
+Where:
+
+:::{.incremental}
+
+- $y$ is the dependent variable (in this case, degrees Fahrenheit)
+  
+- $X$ is the independent variable (in this case, degrees Celsius)
+  
+- $m$ is the slope of the line
+  
+- $c$ is the y-intercept
+
+:::
+:::
+
+---
+
+Using the freezing and boiling points of water, we know:
+
+::: {.incremental}
+
+- Freezing point: $(X_1, y_1) = (0^\circ C, 32^\circ F)$
+- Boiling point: $(X_2, y_2) = (100^\circ C, 212^\circ F)$
+
+:::
+
+---
+
+We can calculate the slope $m$ using these points:
+
+::: {.fragment .fade-up}
+$$ m = \frac{y_2 - y_1}{X_2 - X_1} $$
+:::
+
+::: {.fragment .fade-left}
+
+Substituting the known values and simplifying: 
+:::
+
+::: {.fragment .fade-up}
+ $$ m = \frac{212 - 32}{100 - 0} $$
+:::
+
+::: {.fragment .fade-up}
+ $$ m = \frac{180}{100} $$
+:::
+
+::: {.fragment .fade-up}
+$$ m = 1.8 $$
+:::
+
+---
+
+
+So the equation becomes: 
+
+::: {.fragment .fade-up}
+$$ y = 1.8X + c $$
+:::
+
+::: {.fragment .fade-left}
+
+To find $c$, we use the freezing point ($0°C, 32°F$):
+
+:::
+
+::: {.fragment .fade-up}
+$$ 32 = 1.8 \times 0 + c $$
+:::
+
+::: {.fragment .fade-up}
+$$ c = 32 $$
+:::
+
+---
+
+Therefore, the final conversion formula is:
+
+::: {.fragment .fade-up}
+$$ y = 1.8X + 32 $$
+:::
+
+::: {.fragment .fade-left}
+Or in terms of Fahrenheit and Celsius:
+:::
+
+::: {.fragment .fade-up}
+$$ F = 1.8C + 32 $$
+
+:::
+
+---
+
+## Interactive Temperature Conversion
+
+```{ojs}
+import { Inputs, html } from "@observablehq/inputs"
+
+viewof temp = Inputs.range([-40, 100], {step: 1, value: 40, label: html`Temp &#x2103;`})
+
+md`**Converting temperature from &#x2103; to &#x2109;** <br>
+Celsius = ${d3.format(".0f")(temp)}&#x2103; and Fahrenheit = ${d3.format(".1f")(temp * 9/5 + 32)}&#x2109;`
+```
+
+---
+
+### Multidimensional Data
+
+**Multidimensional** data consists of multiple features or variables describing each data point. For example, a dataset of houses might include features such as:
+
+- Number of bedrooms
+- Lot size
+- Price
+
+---
+
+```{python}
+
+#| echo: false
+ 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.linear_model import LinearRegression
+
+# Set the seed for reproducibility
+np.random.seed(43)
+
+# Generate random data
+num_entries = 20
+bedrooms = np.random.randint(1, 6, size=num_entries)  # Random number of bedrooms between 1 and 5
+lot_size = np.random.randint(1000, 10000, size=num_entries)  # Random lot size between 1000 and 10000 sq ft
+price = 50000 + (bedrooms * 50000) + (lot_size * 2) + np.random.randint(-10000, 10000, size=num_entries)  # Price influenced by bedrooms and lot size
+
+# Create a DataFrame
+data = pd.DataFrame({
+    'Bedrooms': bedrooms,
+    'Lot Size': lot_size,
+    'Price': price
+})
+
+# Prepare the data for the model
+X = data[['Bedrooms', 'Lot Size']]
+y = data['Price']
+
+# Fit a linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Create a grid of values for bedrooms and lot size
+bedrooms_range = np.linspace(data['Bedrooms'].min(), data['Bedrooms'].max(), 10)
+lot_size_range = np.linspace(data['Lot Size'].min(), data['Lot Size'].max(), 10)
+bedrooms_grid, lot_size_grid = np.meshgrid(bedrooms_range, lot_size_range)
+
+# Predict prices using the model
+price_pred = model.predict(np.c_[bedrooms_grid.ravel(), lot_size_grid.ravel()]).reshape(bedrooms_grid.shape)
+
+# Plotting the data
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot
+ax.scatter(data['Bedrooms'], data['Lot Size'], data['Price'], c='r', marker='o')
+
+# Plot the regression plane
+ax.plot_surface(bedrooms_grid, lot_size_grid, price_pred, color='blue', alpha=0.3)
+
+# Set integer ticks for the Bedrooms axis
+ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+# Labels and title
+ax.set_xlabel('Number of Bedrooms')
+ax.set_ylabel('Lot Size (sq metres)')
+ax.set_zlabel('Price ($)')
+ax.set_title('3D Plot of House Features vs. Price with Regression Plane')
+
+plt.show()
+
+```
+
+---
+
+### What is Deep Learning?
+
+::: {.fragment .fade-up}
+Deep Learning is a type of Machine Learning that uses a special kind of algorithm called a neural network, which is designed to mimic the way the human brain works. In Machine Learning, simpler algorithms often need humans to tell them what features to look for in data, like specific patterns or characteristics. Deep Learning, on the other hand, can automatically discover these patterns by itself, thanks to its multiple layers of neurons.
+:::
+---
+
+### What are Neurons?
+
+::: {.fragment .fade-left}
+
+Neurons are the basic units of a neural network, similar to how neurons work in the human brain. Each neuron takes in information, processes it, and passes it on to the next layer of neurons. A deep neural network has many layers of these neurons, which allows it to learn and understand complex patterns in large amounts of data, such as recognizing faces in pictures or understanding spoken words. This ability to learn directly from raw data with minimal human intervention sets Deep Learning apart from traditional Machine Learning.
+:::
+
+---
+
+## Visualizing the Neural Network
+
+:::: columns
+::: {.column}
+::: {.fragment .fade-in}
+
+![Neural Network](img/neuron.png)
+
+:::
+:::
+
+::: {.column}
+::: {.fragment .fade-in}
+
+![Deep Neural Nets](img/DeepNeuralNets.png)
+
+:::
+:::
+::::
+
+---
+
+::: {.callout-tip}
+### When to Use Each Approach
+
+:::{.incremental}
+
+- **Machine Learning**: Ideal for structured, tabular data where traditional algorithms like regression, decision trees, and clustering can be effectively applied.
+- **Deep Learning**: Best suited for complex tasks involving unstructured data such as images, natural language processing (NLP), and large-scale language models, leveraging neural networks to uncover intricate patterns.
+
+:::
+:::
+
+---
+
+## Large Language Models vs. Generative AI
+
+---
+
+### Large Language Models (LLMs)
+:::{.incremental}
+
+- **Definition**: LLMs are designed to understand and generate human language using deep learning architectures.
+- **Functionality**: Used for NLP tasks such as text completion, translation, and summarization.
+- **Examples**: GPT-3, BERT, T5.
+:::
+---
+
+### Generative AI
+::: {.incremental}
+
+- **Definition**: Generative AI includes techniques that create new content across various media.
+- **Functionality**: Used for generating text, images, music, and more.
+- **Examples**: GANs for images, OpenAI's DALL-E, Jukedeck for music.
+:::
+---
