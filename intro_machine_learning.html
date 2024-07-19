@@ -444,9 +444,15 @@ Ricky Macharm
 <ul>
 <li class="fragment"><p><strong>Machine Learning</strong> (ML) builds on the principles of statistics but takes data analysis to a new level by leveraging computational power and algorithms to automatically learn patterns from data.</p></li>
 <li class="fragment"><p>Computers have popularized machine learning by providing the computational power and storage required to efficiently process large datasets and run complex algorithms.</p></li>
-<li class="fragment"><p>NVIDIA has become a top-performing company by pioneering GPU technology, which significantly accelerates AI and machine learning tasks, revolutionizing various industries with unparalleled processing power.</p></li>
 </ul>
 </div>
+</section>
+<section class="slide level2">
+
+<h3 id="machine-learning-pushing-the-envelope-1">Machine Learning: Pushing the Envelope</h3>
+<ul>
+<li>NVIDIA has become a top-performing company by pioneering GPU technology, which significantly accelerates AI and machine learning tasks, revolutionizing various industries with unparalleled processing power.</li>
+</ul>
 </section>
 <section class="slide level2">
 
@@ -483,11 +489,11 @@ Ricky Macharm
 </section>
 <section class="slide level2">
 
-<div id="f51e0dcb" class="cell" data-execution_count="1">
+<div id="12323716" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="intro_machine_learning_files/figure-revealjs/cell-2-output-1.png" width="829" height="523"></p>
+<p><img data-src="intro_machine_learning_files/figure-revealjs/cell-2-output-1.png" width="831" height="528"></p>
 </figure>
 </div>
 </div>
@@ -582,12 +588,12 @@ Ricky Macharm
 <section id="interactive-temperature-conversion" class="slide level2">
 <h2>Interactive Temperature Conversion</h2>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="243" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 242;"><span id="cb1-243"><a href=""></a><span class="im">import</span> { Inputs<span class="op">,</span> html } <span class="im">from</span> <span class="st">"@observablehq/inputs"</span></span>
-<span id="cb1-244"><a href=""></a></span>
-<span id="cb1-245"><a href=""></a>viewof temp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">40</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="fu">html</span><span class="vs">`Temp &amp;#x2103;`</span>})</span>
-<span id="cb1-246"><a href=""></a></span>
-<span id="cb1-247"><a href=""></a><span class="fu">md</span><span class="vs">`**Converting temperature from &amp;#x2103; to &amp;#x2109;** &lt;br&gt;</span></span>
-<span id="cb1-248"><a href=""></a><span class="vs">Celsius = </span><span class="sc">${</span>d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".0f"</span>)(temp)<span class="sc">}</span><span class="vs">&amp;#x2103; and Fahrenheit = </span><span class="sc">${</span>d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".1f"</span>)(temp <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">+</span> <span class="dv">32</span>)<span class="sc">}</span><span class="vs">&amp;#x2109;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="249" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 248;"><span id="cb1-249"><a href=""></a><span class="im">import</span> { Inputs<span class="op">,</span> html } <span class="im">from</span> <span class="st">"@observablehq/inputs"</span></span>
+<span id="cb1-250"><a href=""></a></span>
+<span id="cb1-251"><a href=""></a>viewof temp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">40</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="fu">html</span><span class="vs">`Temp &amp;#x2103;`</span>})</span>
+<span id="cb1-252"><a href=""></a></span>
+<span id="cb1-253"><a href=""></a><span class="fu">md</span><span class="vs">`**Converting temperature from &amp;#x2103; to &amp;#x2109;** &lt;br&gt;</span></span>
+<span id="cb1-254"><a href=""></a><span class="vs">Celsius = </span><span class="sc">${</span>d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".0f"</span>)(temp)<span class="sc">}</span><span class="vs">&amp;#x2103; and Fahrenheit = </span><span class="sc">${</span>d3<span class="op">.</span><span class="fu">format</span>(<span class="st">".1f"</span>)(temp <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">+</span> <span class="dv">32</span>)<span class="sc">}</span><span class="vs">&amp;#x2109;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -623,11 +629,11 @@ Ricky Macharm
 </section>
 <section class="slide level2">
 
-<div id="fe8f7747" class="cell" data-execution_count="2">
+<div id="a45a411d" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="intro_machine_learning_files/figure-revealjs/cell-3-output-1.png" width="562" height="557"></p>
+<p><img data-src="intro_machine_learning_files/figure-revealjs/cell-3-output-1.png" width="580" height="559"></p>
 </figure>
 </div>
 </div>

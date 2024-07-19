@@ -49,10 +49,15 @@ Machine Learning (ML) is a field of artificial intelligence (AI) that enables co
 - **Machine Learning** (ML) builds on the principles of statistics but takes data analysis to a new level by leveraging computational power and algorithms to automatically learn patterns from data.
 
 - Computers have popularized machine learning by providing the computational power and storage required to efficiently process large datasets and run complex algorithms.
+:::
+
+---
+
+### Machine Learning: Pushing the Envelope
+
 
 - NVIDIA has become a top-performing company by pioneering GPU technology, which significantly accelerates AI and machine learning tasks, revolutionizing various industries with unparalleled processing power.
 
-:::
 
 ---
 
@@ -119,6 +124,7 @@ celsius_values = np.linspace(-20, 120, 300)  # Generating a range of Celsius val
 fahrenheit_values = model.predict(celsius_values.reshape(-1, 1))  # Predicting corresponding Fahrenheit values
 
 # Adjust the plot to include markers for the boiling and freezing points
+plt.style.use('ggplot')
 plt.figure(figsize=(10, 6))
 plt.plot(celsius_values, fahrenheit_values, label='Linear Regression Line', color='blue')
 plt.scatter([0, 100], [32, 212], color='red', zorder=5, label='Data Points (Freezing & Boiling)')
@@ -303,6 +309,7 @@ bedrooms_grid, lot_size_grid = np.meshgrid(bedrooms_range, lot_size_range)
 price_pred = model.predict(np.c_[bedrooms_grid.ravel(), lot_size_grid.ravel()]).reshape(bedrooms_grid.shape)
 
 # Plotting the data
+plt.style.use('ggplot')
 fig = plt.figure(figsize=(10, 7))
 ax = fig.add_subplot(111, projection='3d')
 
