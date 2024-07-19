@@ -406,3 +406,6 @@ Neurons are the basic units of a neural network, similar to how neurons work in 
 - **Examples**: GANs for images, OpenAI's DALL-E, Jukedeck for music.
 :::
 ---
+
+
+# Thank You
